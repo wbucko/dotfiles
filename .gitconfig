@@ -1,0 +1,44 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[alias]
+	com = checkout master
+ 	co = checkout
+  	st = status
+  	cm = commit -m
+  	up = pull --rebase
+  	br = branch
+  	df = diff
+  	lg = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(green)%d%Creset %s %C(red)(%an, %cr)%Creset' --abbrev-commit --date=relative
+  	wc = whatchanged -p --abbrev-commit --pretty=medium
+[help]
+  	autocorrect = 1
+[format]
+  	pretty = %C(yellow)%h%Creset -%C(green)%d%Creset %s %C(red)(%an, %cr)%Creset
+[user]
+	email = wojciech.bucko@netguru.co
+	name = Wojciech Bućko
+[color]
+  	ui = true
+[core]
+	excludesfile = /Users/wojtekbucko/.gitignore_global
+[filter "media"]
+  	required = true
+  	clean = git media clean %f
+  	smudge = git media smudge %f
+[push]
+ 	 default = simple
+[filter "hawser"]
+ 	 clean = git hawser clean %f
+ 	 smudge = git hawser smudge %f
+ 	 required = true
+[merge]
+	tool = opendiff
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
