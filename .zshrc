@@ -26,7 +26,15 @@ alias gdc='git diff --cached'
 alias gds='git diff --stat'
 alias gpl='git pull'
 alias gs='git status'
-alias gps='git push'
+alias gps='git push origin HEAD'
+alias gpsf='git push -f origin HEAD'
+
+# Docker -------------------------------------------------
+alias dkc='docker-compose'
+alias dkcr='dkc run --rm'
+alias dkcu='dkc up -d'
+alias dkcb='dkc build'
+alias dkcl='dkc logs -f --tail 200'
 
 ### END OF ALIASES ###
 
@@ -38,13 +46,11 @@ export PATH="$HOME/.bin:$PATH"
 # recommended by brew doctor
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - --no-rehash)"
+
 source "$HOME/.slimzsh/slim.zsh"
-[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+export PATH="/usr/local/opt/openssl/bin:$PATH"
 
-export NVM_DIR="/Users/wojtekbucko/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# added by picobox
-# source ~/.picobox/extensions.bash
-export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+export ASDF_DATA_DIR=`brew --prefix asdf`/
+source $ASDF_DATA_DIR/asdf.sh
+eval "$(rbenv init - --no-rehash)"
